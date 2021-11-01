@@ -1,0 +1,26 @@
+<div id="main">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="books.html">BOOKS</a>
+        <a href="addbook.html" style="color: #1c9287;">Add Book</a>
+        <a href="deletbook.html">Delete Book</a>
+        <a href="bookinformations.html">The Borrow Books</a>
+        <a href="userinformations.html">Borrower Information</a>
+        <a href="requestbook-admin.html">Requsted List</a>
+        <a href="approvingbookrequest.html">Approving List</a>
+        <a href="expiredlist-user.html">Expired List</a>
+    </div>
+    <section class="sidbarSect">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+    </section>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
