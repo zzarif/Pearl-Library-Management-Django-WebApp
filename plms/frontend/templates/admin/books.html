@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,12 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearl Library</title>
     <!-- Rander the all element Normally -->
-    <link rel="stylesheet" href="{% static '/css/all.css' %}">
-    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
-    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- The Css file  -->
-    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="../css/style.css">
     <!-- the font text work  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,12 +24,11 @@
         </script>
     <script>
         $(function () {
-            $("#header").load("{% static '/ui/header.html' %}")
-            $("#sidebar").load("{% static '/ui/sidebar.html' %}")
+            $("#header").load("header.html");
+            $("#sidebar").load("sidebar.html");
 
-        })
+        });
     </script>
-    <script src="{% static '/scripts/bookList.js' %}" defer></script>
 
 
 </head>
@@ -56,7 +53,10 @@
                         <form class="form-inline">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search By name"
                                 aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="button"
+                                id="searchButton">Search</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="addbook.html"
+                                    style="color:green;">Add Book </a> </button>
                             <br>
 
                 </div>
@@ -66,18 +66,24 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID</th>
                             <th>Title</th>
                             <th>Author</th>
-                            <th>Publisher</th>
                             <th>Category</th>
-                            <th>Description</th>
-                            <th>Rating</th>
-                            <th>Number of Copies</th>
+                            <th>Availability</th>
                         </tr>
                     </thead>
                     <tbody id="tableContent">
-                
+
+
+                        <th><a href="detailsbook.html">Title</a></th>
+                        <th><a href="detailsbook.html">Author</a></th>
+                        <th><a href="detailsbook.html">Category</a></th>
+                        <th><a href="detailsbook.html">Availability</a></th>
+
+                        </tr>
+
+
+
                     </tbody>
 
 
@@ -88,6 +94,55 @@
     </div>
 
 </body>
+<script>
 
+
+    function loadBookList() {
+        var api = ''
+        fetch(api, {
+            method: 'GET'
+        })
+            .then((response) => response.json())
+            .then(function (list) {
+                var tableContent = document.getElementById('tableContent')
+                tableContent.innerHTML = ''
+
+                for (var i in list) {
+
+                    var newRow = `
+                            <tr>
+                             
+                                <td>${list[i].title}</td>
+                                <td>${list[i].author}</td>
+                                <td>${list[i].category}</td>
+                                <td>${list[i].availability}</td>
+                            </tr>
+                        `
+
+                    tableContent.innerHTML += newRow
+                }
+            })
+    }
+
+
+    function searchBook() {
+        var bookId = document.getElementById('bookId').value
+        var api = '' + bookId + '/'
+
+        var tableContent = document.getElementById('tableContent')
+
+        fetch(api, {
+            method: 'GET'
+        }).then(function (response) {
+
+        })
+    }
+
+    var searchButton = document.getElementById('searchButton');
+    searchButton.addEventListener("click", searchBook);
+
+
+
+</script>
 
 </html>

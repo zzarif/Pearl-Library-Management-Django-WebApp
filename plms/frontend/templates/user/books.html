@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearl Library</title>
+    <!-- Rander the all element Normally -->
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- The Css file  -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- the font text work  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;0,500;0,700;1,700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#sidebar").load("sidebar.html");
+
+        });
+    </script>
+
+
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="sidebar"></div>
+    <section>
+        <div class="container">
+
+
+            <section>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="float: right; ">
+                    <nav class="navbar navbar-light bg-light">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search By name"
+                                aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="button"
+                                id="searchButton">Search</button>
+                            <br>
+                        </form>
+                    </nav>
+                </div>
+                <br>
+                <br>
+                <h2>List Of Books </h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Availability</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableContent">
+
+
+                        <th><a href="detailsbook.html">Title</a></th>
+                        <th><a href="detailsbook.html">Author</a></th>
+                        <th><a href="detailsbook.html">Category</a></th>
+                        <th><a href="detailsbook.html">Availability</a></th>
+
+                        </tr>
+
+
+
+                    </tbody>
+
+
+
+                </table>
+        </div>
+    </section>
+    </div>
+
+</body>
+<script>
+    function loadBookList() {
+        var api = ''
+        fetch(api, {
+            method: 'GET'
+        })
+            .then((response) => response.json())
+            .then(function (list) {
+                var tableContent = document.getElementById('tableContent')
+                tableContent.innerHTML = ''
+
+                for (var i in list) {
+
+                    var newRow = `
+                            <tr>
+                             
+                                <td>${list[i].title}</td>
+                                <td>${list[i].author}</td>
+                                <td>${list[i].category}</td>
+                                <td>${list[i].availability}</td>
+                            </tr>
+                        `
+
+                    tableContent.innerHTML += newRow
+                }
+            })
+    }
+
+    function searchBook() {
+        var bookId = document.getElementById('bookId').value
+        var api = '' + bookId + '/'
+
+        var tableContent = document.getElementById('tableContent')
+
+        fetch(api, {
+            method: 'GET'
+        }).then(function (response) {
+
+        })
+    }
+
+    var searchButton = document.getElementById('searchButton');
+    searchButton.addEventListener("click", searchBook);
+
+
+</script>
+
+</html>

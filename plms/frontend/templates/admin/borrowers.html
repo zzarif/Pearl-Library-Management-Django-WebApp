@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearl Library</title>
+    <!-- Rander the all element Normally -->
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- The Css file  -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- the font text work  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;0,500;0,700;1,700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#sidebar").load("sidebar.html");
+
+        });
+    </script>
+
+
+
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="sidebar"></div>
+    <section>
+        <div class="container">
+
+
+            <section>
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <nav class="navbar navbar-light bg-light" style="float: right;">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search By Id"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Bolck User</button>
+                    </form>
+                </nav>
+
+                <nav class="navbar navbar-light bg-light" style="float: right;">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search By Id"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </nav>
+
+
+                <h2>List Of Users </h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+
+                            <th>Name</th>
+                            <th> Phone Number</th>
+                            <th>Email Address</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody id="tableContent">
+                        <tr>
+
+                            <th><a href="detailsborrower.html">Name</a></th>
+                            <th><a href="detailsborrower.html"> Phone Number</a></th>
+                            <th><a href="detailsborrower.html">Email Address</a></th>
+                        </tr>
+
+
+                    </tbody>
+
+
+
+                </table>
+        </div>
+    </section>
+
+</body>
+<script>
+    function loaduserList() {
+        var api = ''
+        fetch(api, {
+            method: 'GET'
+        })
+            .then((response) => response.json())
+            .then(function (list) {
+                var tableContent = document.getElementById('tableContent')
+                tableContent.innerHTML = ''
+
+                for (var i in list) {
+
+                    var newRow = `
+                            <tr>
+                                <td>${list[i].id}</td>
+                                <td>${list[i].name}</td>
+                                <td>${list[i].phonenumber}</td>
+                                <td>${list[i].email}</td>
+                            
+                            </tr>
+                        `
+
+                    tableContent.innerHTML += newRow
+                }
+            })
+    }
+
+</script>
+
+</html>

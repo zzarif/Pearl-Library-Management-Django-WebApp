@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearl Library</title>
+    <!-- Rander the all element Normally -->
+    <link rel="stylesheet" href="{% static '/css/all.css' %}">
+    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <!-- The Css file  -->
+    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <!-- the font text work  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;0,500;0,700;1,700&display=swap"
+        rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+
+
+            <h1>Pearl <em>Library</em>
+            </h1>
+            <div class="links" onclick="myFunction()">
+                <span class="icons">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </span>
+
+                <ul id="myDropdown" class="Dropdown">
+                    <li><a href="../index.html">HOME</a> </li>
+                    <li><a href="../user/userlogin.html">USER LOGIN</a> </li>
+                    <li><a href="../admin/adminlogin.html">ADMIN LOGIN</a> </li>
+
+                    <li><a href="../contact.html">CONTACT</a> </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+    </header>
+    <section>
+
+        <div class="container">
+
+
+            <form class="contact-form" action="">
+                <br>
+                <br><br>
+                <h2> welcome to Pearl Library</h2>
+                <input class="form-control" type="email" name="email" placeholder="Enter your Email Address">
+                <i class="fas fa-envelope"></i>
+                <input class="form-control" type="password" name="password" placeholder="Password" value="">
+                <i class="fas fa-lock"></i>
+                <!-- <input type="submit" class="btn btn-success " value="Login"> -->
+                <button class="btn btn-success " value="Login"> <a href="adminporfile.html">Login</a></button>
+
+
+                <i class="fas fa-paper-plane sendi"></i>
+                <br>
+                <a href="" style="color: black;">Forget your Password ?</a>
+                <br>
+
+
+
+
+            </form>
+
+        </div>
+
+        </div>
+    </section>
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("showdrop");
+        }
+
+    </script>
+</body>
+
+</html>

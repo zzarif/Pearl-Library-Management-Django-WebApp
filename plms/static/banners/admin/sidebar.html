@@ -1,0 +1,37 @@
+<div id="main">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="books.html" id="Books">BOOKS</a>
+        <a href="addbook.html" id="AddBook">Add Book</a>
+        <a href="detailsbook.html" id="Delete">Delete Book</a>
+        <a href="borrowedbook.html" id="BorrowedBooks">The Borrowed Books</a>
+        <a href="borrowers.html" id="Borrower">Borrower Information</a>
+        <a href="grantbook.html" id="Requsted">Grant Books</a>
+        <a href="receivebook.html" id="Requsted">Receive Book</a>
+        <a href="viewmessages.html" id="Requsted">View Messages</a>
+        <a href="expiredlist-user.html" id="Expired">Expired Book List</a>
+    </div>
+    <section class="sidbarSect">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+    </section>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        // let Books = document.getElementById("Books"),
+        //     AddBook = document.getElementById("AddBook"),
+        //     Delete = document.getElementById("Delete"),
+        //     BorrowedBooks = document.getElementById("BorrowedBooks"),
+        //     Borrower = document.getElementById("Borrower"),
+        //     Requsted = document.getElementById("Requsted"),
+        //     Expired = document.getElementById("Expired");
+        // function colobook() {
+        //     Books.style.color = '#1c9287';
+        // }
+    </script>

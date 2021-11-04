@@ -45,6 +45,7 @@
     position: fixed;
     z-index: 1;
     top: 0%;
+    margin-bottom: 170px;
   }
 
   header .container{
@@ -234,28 +235,44 @@ a {
 .fristSection .caption h2 {
   margin-top: 30px;
   margin-bottom: 25px;
-  font-size: 84px;
+  font-size: 70px;
   text-transform: uppercase;
   font-weight: 800;
   color: #fff;
   letter-spacing: 1px;
 
 }
+
+
 
 .fristSection .caption h2 em {
   font-style: normal;
   color: var(--main-color);
   font-weight: 900;
+
 }
 .secondSection .caption h2 {
   margin-top: 30px;
   margin-bottom: 25px;
-  font-size: 84px;
+  font-size: 60px;
+  text-align:center;
   text-transform: uppercase;
   font-weight: 800;
   color: #fff;
   letter-spacing: 1px;
+  max-width: 100%;
 
+}
+@media (max-width: 768px) {
+  .secondSection .caption h2 {
+    font-size: 50px;
+  }
+}
+/* Medium */
+@media (max-width: 600px) {
+  .secondSection .caption h2 {
+    font-size: 40px;
+  }
 }
 
 .secondSection .caption h2 em {
@@ -294,8 +311,20 @@ a {
 max-width: 100%;
 word-wrap:break-word;
 }
-
-
+@media (max-width: 768px) {
+  .fristSection .caption .sectionRead h2 {
+    font-size: 50px;
+  }
+}
+/* Medium */
+@media (max-width: 600px) {
+  .fristSection .caption .sectionRead h2 {
+    font-size: 40px;
+  }
+}
+th a {
+  color: black;
+}
 
 
 /* userlogin */

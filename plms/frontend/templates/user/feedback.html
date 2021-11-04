@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearl Library</title>
+    <!-- Rander the all element Normally -->
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- The Css file  -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- the font text work  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;0,500;0,700;1,700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+            $("#sidebar").load("sidebar.html");
+
+        });
+    </script>
+
+
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div id="sidebar"></div>
+
+    <section>
+        <div class="container">
+
+
+            <section>
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <form action="">
+                    <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+                    <nav class="navbar navbar-light bg-light">
+
+                        <button type="button" class="btn btn-success " id="addfeedback"> Add Feedback</button>
+                </form>
+                </nav>
+
+                </form>
+                <h2>FEEDBACK </h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+
+
+                            <th id="id">ID</th>
+                            <th id="feedback">Comments</th>
+
+
+
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+
+
+                    </tbody>
+
+
+
+                </table>
+        </div>
+    </section>
+    </div>
+    </div>
+</body>
+<script>
+    var tableContent = document.getElementById('table-content'),
+        id = document.getElementById('id').value,
+        feedback = document.getElementById('feedback').value,
+
+
+    var addfeedbackButton = document.getElementById('addfeedback');
+    addfeedbackButton.addEventListener("click", addFeedback);
+
+    function addFeedback() {
+        var api = ''
+        fetch(api, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'title': title,
+                'author': author,
+
+            })
+        }).then(function (response) {
+            alert("Book Added")
+        })
+    }
+
+</script>
+
+</html>

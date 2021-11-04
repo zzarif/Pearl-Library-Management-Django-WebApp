@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,12 +9,11 @@
     <meta http-equiv="Cache-control" content="no-cache">
     <title>Pearl Library</title>
     <!-- Rander the all element Normally -->
-    <link rel="stylesheet" href="{% static '/css/all.css' %}">
-    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
-    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- The Css file  -->
-    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="../css/style.css">
     <!-- the font text work  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,12 +24,11 @@
         </script>
     <script>
         $(function () {
-            $("#header").load("{% static '/ui/header.html' %}")
-            $("#sidebar").load("{% static '/ui/sidebar.html' %}")
+            $("#header").load("header.html");
+            $("#sidebar").load("sidebar.html");
 
-        })
+        });
     </script>
-    <script src="{% static '/scripts/addBook.js' %}" defer></script>
 
 
 </head>
@@ -51,19 +48,17 @@
             <form class="contact-form" action="" method="post">
                 <h2> Add a New Book</h2>
 
-                <input class="form-control" type="text" id="title" placeholder="Title" value="">
+                <input class="form-control" type="text" name="title" placeholder="Title" value="">
 
-                <input class="form-control" type="text" id="author" placeholder="Enter The Book Author">
+                <input class="form-control" type="text" name="author" placeholder="Enter The Book Author">
 
-                <input class="form-control" type="text" id="publisher" placeholder="Publisher">
+                <input class="form-control" type="text" name="publisher" placeholder="Publisher">
 
-                <input class="form-control" type="text" id="category" placeholder="Enter The Category">
+                <input class="form-control" type="text" name="category" placeholder="Enter The Category">
 
-                <input class="form-control" type="text" id="description" placeholder="Description" value="">
+                <input class="form-control" type="text" name="description" placeholder="Description" value="">
 
-                <input class="form-control" type="text" id="rating" placeholder="Rating" value="">
-
-                <input class="form-control" type="text" id="copies" placeholder="Number of Copies" value="">
+                <input class="form-control" type="text" name="copies" placeholder="Number of Copies" value="">
 
 
 
@@ -72,7 +67,7 @@
 
 
 
-                <button type="button" class="btn btn-success " id="addBook"> Add Book</button>
+                <button type="button" class="btn btn-success " id="addButton"> Add Book</button>
                 <i class="fas fa-paper-plane sendi"></i>
 
             </form>
@@ -83,6 +78,46 @@
         </div>
     </section>
     </div>
+
+
+
+    <script>
+        var tableContent = document.getElementById('table-content'),
+            title = document.getElementById('title').value,
+            author = document.getElementById('author').value,
+            publisher = document.getElementById('publisher').value,
+            description = document.getElementById('description').value,
+            copies = document.getElementById('copies').value;
+
+        var addButton = document.getElementById('addButton');
+        addButton.addEventListener("click", addBook);
+
+        function addBook() {
+            var api = ''
+            fetch(api, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'title': title,
+                    'author': author,
+                    'publisher': publisher,
+                    'category': category,
+                    'description': description,
+                    'copies': copies
+                })
+            }).then(function (response) {
+                alert("Book Added")
+            })
+        }
+
+
+
+
+
+
+    </script>
 
 </body>
 
