@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,11 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearl Library</title>
     <!-- Rander the all element Normally -->
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/all.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static '/css/all.css' %}">
+    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
     <!-- The Css file  -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <!-- the font text work  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,20 +24,21 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
     <script>
-        $(function () {
-            $("#header").load("header.html");
-            $("#sidebar").load("sidebar.html");
+       $(function () {
+            $("#header").load("{% static '/banners/user/header.html' %}");
+            $("#sidebar").load("{% static '/banners/user/sidebar.html' %}");
 
         });
     </script>
 
-
+<script type="module" src="{% static '/scripts/admin/detailsBook.js' %}" defer></script>
 </head>
 
 <body>
     <div id="header"></div>
 
     <div id="sidebar"></div>
+    <div style="height: 50px;"></div>
     <section>
         <div class="container">
 
@@ -46,7 +49,7 @@
                 <br>
                 <br>
                 <br>
-                <div>
+                <!-- <div>
 
 
                     <nav class="navbar navbar-light bg-light" style="float: right;">
@@ -56,7 +59,7 @@
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Requste</button>
                         </form>
                     </nav>
-                </div>
+                </div> -->
 
                 <h2>Details of The Book</h2>
                 <table class="table">

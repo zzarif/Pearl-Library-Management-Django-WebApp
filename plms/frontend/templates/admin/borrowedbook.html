@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,11 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearl Library</title>
     <!-- Rander the all element Normally -->
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/all.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static '/css/all.css' %}">
+    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
     <!-- The Css file  -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <!-- the font text work  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,20 +25,21 @@
         </script>
     <script>
         $(function () {
-            $("#header").load("header.html");
-            $("#sidebar").load("sidebar.html");
+            $("#header").load("{% static '/banners/admin/header.html' %}");
+            $("#sidebar").load("{% static '/banners/admin/sidebar.html' %}");
 
         });
     </script>
 
 
-
+    <script type="module" src="{% static '/scripts/admin/borrowedBook.js' %}" defer></script>
 </head>
 
 <body>
     <div id="header"></div>
 
     <div id="sidebar"></div>
+    <div style="height: 50px;"></div>
     <div class="container">
 
 
@@ -52,7 +55,7 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-
+                        <th>Trans Id</th>
                         <th>Book name</th>
                         <th>Author</th>
                         <th>Borrower</th>
@@ -64,10 +67,6 @@
 
                 </tr>
                 <tbody id="tableContent">
-                    <th><a href="detailsborrower.html"> Book name</a></th>
-                    <th>Author</th>
-                    <th>Borrower</th>
-                    <th>Returning Date</th>
 
 
                 </tbody>

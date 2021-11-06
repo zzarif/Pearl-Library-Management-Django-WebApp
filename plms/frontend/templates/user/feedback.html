@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,11 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearl Library</title>
     <!-- Rander the all element Normally -->
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/all.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static '/css/all.css' %}">
+    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
     <!-- The Css file  -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <!-- the font text work  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,11 +25,13 @@
         </script>
     <script>
         $(function () {
-            $("#header").load("header.html");
-            $("#sidebar").load("sidebar.html");
+            $("#header").load("{% static '/banners/user/header.html' %}");
+            $("#sidebar").load("{% static '/banners/user/sidebar.html' %}");
 
         });
     </script>
+
+<script type="module" src="{% static '/scripts/user/feedback.js' %}" defer></script>
 
 
 </head>
@@ -35,8 +39,9 @@
 <body>
     <div id="header"></div>
 
+    
     <div id="sidebar"></div>
-
+    <div style="height: 50px;"></div>
     <section>
         <div class="container">
 
@@ -48,7 +53,7 @@
                 <br>
                 <br>
                 <form action="">
-                    <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+                    <textarea name="" id="in_feedback" cols="30" rows="5" class="form-control"></textarea>
                     <nav class="navbar navbar-light bg-light">
 
                         <button type="button" class="btn btn-success " id="addfeedback"> Add Feedback</button>
@@ -62,7 +67,7 @@
                         <tr>
 
 
-                            <th id="id">ID</th>
+                            <th id="id">Name</th>
                             <th id="feedback">Comments</th>
 
 
@@ -71,7 +76,7 @@
                     </thead>
 
 
-                    <tbody>
+                    <tbody id="tableContent">
 
 
 
@@ -85,32 +90,5 @@
     </div>
     </div>
 </body>
-<script>
-    var tableContent = document.getElementById('table-content'),
-        id = document.getElementById('id').value,
-        feedback = document.getElementById('feedback').value,
-
-
-    var addfeedbackButton = document.getElementById('addfeedback');
-    addfeedbackButton.addEventListener("click", addFeedback);
-
-    function addFeedback() {
-        var api = ''
-        fetch(api, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'title': title,
-                'author': author,
-
-            })
-        }).then(function (response) {
-            alert("Book Added")
-        })
-    }
-
-</script>
 
 </html>

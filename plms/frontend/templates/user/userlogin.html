@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;0,500;0,700;1,700&display=swap"
         rel="stylesheet">
 
-    <script type="module" src="{% static '/scripts/userLogin.js' %}" defer></script>
+    <script type="module" src="{% static '/scripts/user/userLogin.js' %}" defer></script>
 
 </head>
 
@@ -41,11 +41,11 @@
                 </span>
 
                 <ul id="myDropdown" class="Dropdown">
-                    <li><a href="../index.html">HOME</a> </li>
-                    <li><a href="../user/userlogin.html">USER LOGIN</a> </li>
-                    <li><a href="../admin/adminlogin.html">ADMIN LOGIN</a> </li>
+                    <li><a href="http://localhost:8000/">HOME</a> </li>
+                    <li><a href="">USER LOGIN</a> </li>
+                    <li><a href="http://localhost:8000/admin-login/">ADMIN LOGIN</a> </li>
 
-                    <li><a href="../contact.html">CONTACT</a> </li>
+                    <li><a href="http://localhost:8000/contact/">CONTACT</a> </li>
 
 
                 </ul>
@@ -61,7 +61,7 @@
             <form class="contact-form" action="">
                 <br>
                 <br><br>
-                <h2> welcome to Pearl Library</h2>
+                <h2> Welcome to Pearl Library</h2>
                 <input id="in_username" class="form-control" type="email" name="email" placeholder="Enter your Id ">
                 <i class="fas fa-envelope"></i>
                 <input id="in_password" class="form-control" type="password" name="password" placeholder="Password" value="">

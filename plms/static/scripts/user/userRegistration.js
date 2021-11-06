@@ -1,4 +1,4 @@
-import { urls } from "./urls.js";
+import { urls } from "../urls.js";
 
 var btnRegister = document.getElementById('btn_register');
 btnRegister.addEventListener('click',function(event) {

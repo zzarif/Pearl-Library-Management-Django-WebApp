@@ -3,6 +3,17 @@ const urls = {
     baseAPIUrl: "http://localhost:8000/apis/",
     loginApiEndpoint: "validate-user/",
     registerApiEndpoint: "register-user/",
+    detailsBookAPIEndPoint: "book-list-detail-info/",
+    borrowedBookAPIEndPoint: "borrowers-info-all/",
+    borrowersApiEndPoint: "user-info-all/",
+    userInfoId: "user-info/",
+    borrowedBookUserApiEndPoint: "borrowed-books/",
+    feedback: "feedback/",
+    addFeedback: "add-feedback/",
+    requestBook: "request-book/",
+    receiveBook: "receive-book/",
+    messageAll: "message-all/",
+    addBook: "add-book/",
     
 
     // ui endpoints
@@ -12,7 +23,10 @@ const urls = {
     adminLogin: "/admin-login/",
 
     userRegister: "/user-register/",
-    profile: "/profile/",
+
+    userProfile: "/user-profile/",
+    adminProfile: "/admin-profile/",
+    borrowedBook: "borrowed-book-admin/"
 };
 
 export { urls };

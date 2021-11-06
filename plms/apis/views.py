@@ -5,8 +5,8 @@ from rest_framework import serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import json
-from .models import Book, Feedback, User
-from .serializers import BookSerializer, UserSerializer
+from .models import Book, Feedback, Message, User
+from .serializers import BookSerializer, MessageSerializer, UserSerializer
 
 
 def simple_response(code,message):
@@ -68,14 +68,17 @@ def validate_user(request):
     dict_request = json.loads(str_request)
     received_id = dict_request['id']
     received_pwd = dict_request['password']
+    received_role_is_borrower = dict_request['role_is_borrower']
     try:
         with connection.cursor() as c:
             row = c.execute(
-                "SELECT id,password FROM apis_user WHERE id=%s",
+                "SELECT id,password,role_is_borrower FROM apis_user WHERE id=%s",
                 [received_id]
             ).fetchone()
-            if received_id==row[0] and received_pwd==row[1]:
+            if received_id==row[0] and received_pwd==row[1] and received_role_is_borrower==row[2]:
                 return Response(simple_response(1,"Login successful"))
+            elif received_role_is_borrower!=row[2]:
+                return Response(simple_response(0,"You're not authorized")) 
             elif received_pwd!=row[1]:
                 return Response(simple_response(0,"Invalid password"))  
     except:
@@ -181,15 +184,16 @@ def book_list_short_info(request):
             false ELSE true END AS AvailabilityStatus FROM apis_book LEFT OUTER 
             JOIN NumberOFBorrowedCopiesPerBook ON book_id=apis_book.id)
             
-            SELECT title,author,category,CASE AvailabilityStatus WHEN true 
+            SELECT id,title,author,category,CASE AvailabilityStatus WHEN true 
             THEN 'Available' WHEN false THEN 'Not Available' END as 
             Availability from BooksInformation"""
         ).fetchall()
         str_response = json.dumps([{
-            "title": row[0],
-            "author": row[1],
-            "category": row[2],
-            "availability_status": row[3]
+            "id": row[0],
+            "title": row[1],
+            "author": row[2],
+            "category": row[3],
+            "availability_status": row[4]
         }for row in rows])
         dict_response = json.loads(str_response)
         return Response(dict_response)
@@ -202,9 +206,9 @@ def book_list_short_info(request):
 ### for book list with
 ### AVAILABILITY STATUS
 @api_view(['GET'])
-def book_list_detail_info(request,book_id):
+def book_list_detail_info(request):
     with connection.cursor() as c:
-        row = c.execute(
+        rows = c.execute(
             """WITH BooksInformation AS (WITH NumberOFBorrowedCopiesPerBook 
             AS (SELECT book_id,COUNT(trans_id) AS NumberOfBorrowedCopies FROM 
             apis_borrowing_log WHERE book_returned=false GROUP BY book_id) SELECT 
@@ -216,9 +220,9 @@ def book_list_detail_info(request,book_id):
             
             SELECT id,title,author,publisher,category,description,number_of_copies_bought,
             CASE AvailabilityStatus WHEN true THEN 'Available' WHEN false THEN 'Not Available' 
-            END AS Available FROM BooksInformation WHERE id=%s""", [book_id]
-        ).fetchone()
-        return Response({
+            END AS Available FROM BooksInformation"""
+        ).fetchall()
+        str_response = json.dumps([{
             "id": row[0],
             "title": row[1],
             "author": row[2],
@@ -227,7 +231,9 @@ def book_list_detail_info(request,book_id):
             "description": row[5],
             "number_of_copies_bought": row[6],
             "availability_status": row[7]
-        })
+        }for row in rows])
+        dict_response = json.loads(str_response)
+        return Response(dict_response)
 
 
 
@@ -306,17 +312,18 @@ def borrowed_books(request,user_id):
 def borrowers_info_all(request):
     with connection.cursor() as c:
         rows = c.execute(
-            """select apis_book.title,apis_book.author,apis_user.name,
+            """select apis_borrowing_log.trans_id,apis_book.title,apis_book.author,apis_user.name,
             apis_borrowing_log.returning_date from apis_borrowing_log,
             apis_user,apis_book where apis_user.id=apis_borrowing_log.user_id 
             AND apis_book.id=apis_borrowing_log.book_id AND 
             apis_borrowing_log.book_returned=false"""
         ).fetchall()
         str_response = json.dumps([{
-            "title": row[0],
-            "author": row[1],
-            "name": row[2],
-            "returning_date": row[3],
+            "trans_id": row[0],
+            "title": row[1],
+            "author": row[2],
+            "name": row[3],
+            "returning_date": row[4],
         }for row in rows],default=str)
         dict_response = json.loads(str_response)
         return Response(dict_response)
@@ -380,6 +387,26 @@ def receive_book(request,trans_id):
             [trans_id]
         )
         return Response(simple_response(1,"Book Received"))
+
+
+# add msgs
+@api_view(['POST'])
+def add_message(request):
+    serializer = MessageSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(simple_response(1,"Message sent successfully"))
+    else:
+        return Response(simple_response(0,"Something went wrong"))
+
+        
+
+### fetch all msgs 
+@api_view(['GET'])
+def message_all(request):
+    messages = Message.objects.all()
+    serializer = MessageSerializer(messages,many=True)
+    return Response(serializer.data)
 
 
 # @api_view(['GET'])

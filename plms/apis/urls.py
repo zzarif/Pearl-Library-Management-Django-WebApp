@@ -17,7 +17,7 @@ urlpatterns = [
 
     # books (customer)
     path('book-list-short-info/',views.book_list_short_info,name="book_list_short_info"),
-    path('book-list-detail-info/<str:book_id>/',views.book_list_detail_info,name="book_list_detail_info"),
+    path('book-list-detail-info/',views.book_list_detail_info,name="book_list_detail_info"),
     path('request-book/',views.request_book,name="request_book"),
     path('borrowed-books/<str:user_id>/',views.borrowed_books,name="borrowed_books"),
 
@@ -29,5 +29,6 @@ urlpatterns = [
     path('grant-book/<int:trans_id>/',views.grant_book,name="grant_book"),
     path('receive-book/<int:trans_id>/',views.receive_book,name="receive_book"),
 
-
+    path('add-message/',views.add_message,name="add_message"),
+    path('message-all/',views.message_all,name="message_all"),   
 ]

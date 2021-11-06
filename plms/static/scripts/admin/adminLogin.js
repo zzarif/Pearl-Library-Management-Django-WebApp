@@ -1,11 +1,5 @@
-import { urls } from "./urls.js";
-import { sessionKeys } from "./sessionKeys.js"
-
-var btnGoToRegister = document.getElementById('btn_go_to_register');
-btnGoToRegister.addEventListener('click',function(event) {
-    event.preventDefault();
-    window.location = urls.baseUrl+urls.userRegister;
-});
+import { urls } from "../urls.js";
+import { sessionKeys } from "../sessionKeys.js"
 
 var btnLogin = document.getElementById('btn_login');
 btnLogin.addEventListener('click',function(event) {
@@ -23,6 +17,7 @@ btnLogin.addEventListener('click',function(event) {
         body: JSON.stringify({
             'id': username,
             'password': password,
+            'role_is_borrower': false
         })
     })
     .then((response) => response.json())
@@ -32,7 +27,7 @@ btnLogin.addEventListener('click',function(event) {
 
         if(responseCode==1) {
             sessionStorage.setItem(sessionKeys.userId,username);
-            window.location = urls.baseUrl+urls.profile;
+            window.location = urls.baseUrl+urls.adminProfile;
         }
             
         else alert(responseMessage);
@@ -40,5 +35,5 @@ btnLogin.addEventListener('click',function(event) {
 });
 
 window.onload = function() {
-    sessionStorage.setItem(sessionKeys.userRole,'1');
+    sessionStorage.setItem(sessionKeys.userRole,'0');
 }

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-control" content="no-cache">
     <title>Pearl Library</title>
     <!-- Rander the all element Normally -->
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/all.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static '/css/all.css' %}">
+    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
     <!-- The Css file  -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <!-- the font text work  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,13 +25,13 @@
         </script>
     <script>
         $(function () {
-            $("#header").load("header.html");
-            $("#sidebar").load("sidebar.html");
+            $("#header").load("{% static '/banners/admin/header.html' %}");
+            $("#sidebar").load("{% static '/banners/admin/sidebar.html' %}");
 
         });
     </script>
 
-
+<script type="module" src="{% static '/scripts/admin/addBook.js' %}" defer></script>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
 
     <div id="sidebar"></div>
 
-
+    <div style="height: 50px;"></div>
 
     <section>
 
@@ -47,18 +48,19 @@
 
             <form class="contact-form" action="" method="post">
                 <h2> Add a New Book</h2>
+                <input id="id" class="form-control" type="text" name="title" placeholder="Id" value="">
 
-                <input class="form-control" type="text" name="title" placeholder="Title" value="">
+                <input id="title" class="form-control" type="text" name="title" placeholder="Title" value="">
 
-                <input class="form-control" type="text" name="author" placeholder="Enter The Book Author">
+                <input id="author" class="form-control" type="text" name="author" placeholder="Enter The Book Author">
 
-                <input class="form-control" type="text" name="publisher" placeholder="Publisher">
+                <input id="publisher" class="form-control" type="text" name="publisher" placeholder="Publisher">
 
-                <input class="form-control" type="text" name="category" placeholder="Enter The Category">
+                <input id="category" class="form-control" type="text" name="category" placeholder="Enter The Category">
 
-                <input class="form-control" type="text" name="description" placeholder="Description" value="">
+                <input id="description" class="form-control" type="text" name="description" placeholder="Description" value="">
 
-                <input class="form-control" type="text" name="copies" placeholder="Number of Copies" value="">
+                <input id="copies" class="form-control" type="text" name="copies" placeholder="Number of Copies" value="">
 
 
 

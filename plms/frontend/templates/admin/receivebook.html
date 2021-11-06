@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,11 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearl Library</title>
     <!-- Rander the all element Normally -->
-    <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/all.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static '/css/all.css' %}">
+    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
     <!-- The Css file  -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <!-- the font text work  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,13 +25,13 @@
         </script>
     <script>
         $(function () {
-            $("#header").load("header.html");
-            $("#sidebar").load("sidebar.html");
+            $("#header").load("{% static '/banners/admin/header.html' %}");
+            $("#sidebar").load("{% static '/banners/admin/sidebar.html' %}");
 
         });
     </script>
 
-
+<script type="module" src="{% static '/scripts/admin/receiveBook.js' %}" defer></script>
 
 </head>
 
@@ -37,17 +39,18 @@
     <div id="header"></div>
 
     <div id="sidebar"></div>
+    <div style="height: 50px;"></div>
     <section>
         <div class="container">
 
             <form class="contact-form" action="" method="">
                 <br>
                 <br><br>
-                <h2> Confirm Receipt of the Book</h2>
-                <input class="form-control" type="text" name="Approve" placeholder="Transaction  Id">
+                <h2> Receive Book from User</h2>
+                <input id="trans_id" class="form-control" type="text" name="Approve" placeholder="Transaction  Id">
 
 
-                <input type="submit" class="btn btn-success " value="Approve">
+                <button id="receive" class="btn btn-success " value="Approve">Receive</button>
         </div>
     </section>
     </div>

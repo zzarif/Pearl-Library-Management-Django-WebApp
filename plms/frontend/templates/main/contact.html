@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,11 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearl Library</title>
     <!-- Rander the all element Normally -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static '/css/all.css' %}">
+    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
     <!-- The Css file  -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{% static '/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <!-- the font text work  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,11 +41,11 @@
                 </span>
 
                 <ul id="myDropdown" class="Dropdown">
-                    <li><a href="index.html">HOME</a> </li>
-                    <li><a href="user/userlogin.html">USER LOGIN</a> </li>
-                    <li><a href="admin/adminlogin.html">ADMIN LOGIN</a> </li>
+                    <li><a href="http://localhost:8000/">HOME</a> </li>
+                    <li><a href="http://localhost:8000/user-login/">USER LOGIN</a> </li>
+                    <li><a href="http://localhost:8000/admin-login/">ADMIN LOGIN</a> </li>
 
-                    <li><a href="contact.html">CONTACT</a> </li>
+                    <li><a href="">CONTACT</a> </li>
 
 
                 </ul>
@@ -52,7 +54,7 @@
         </div>
     </header>
 
-
+    <div style="height: 50px;"></div>
     <div class="container">
         <form action="" class="contact-form">
 
